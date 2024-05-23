@@ -174,6 +174,7 @@ constexpr int32_t kFastFlashTime = 60;
 constexpr int32_t kSampleMarkerBlinkTime = 200;
 
 constexpr int32_t kScrollTime = 400;
+constexpr int32_t kSettleIterations = 2;
 
 constexpr int32_t USE_DEFAULT_VELOCITY = 255;
 

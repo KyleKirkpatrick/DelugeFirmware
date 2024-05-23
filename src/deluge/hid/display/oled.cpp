@@ -1097,16 +1097,18 @@ void OLED::scrollingAndBlinkingTimerEvent() {
 		return; // Probably isn't necessary...
 	}
 
-	bool finished = true;
+	bool finished = true;	// Stays true if all scrollers have finished moving
 
+	// Update the position of each scroller
 	for (int32_t s = 0; s < NUM_SIDE_SCROLLERS; s++) {
 		SideScroller* scroller = &sideScrollers[s];
 		if (scroller->text) {
+
 			if (scroller->finished) {
-				continue;
+				continue;	// If the scroller is finished, it does not need to update position.
 			}
 
-			scroller->pos += sideScrollerDirection;
+			scroller->pos += sideScrollerDirection;		// Move the scroller in the current scroll direction
 
 			if (scroller->pos <= 0) {
 				scroller->finished = true;
@@ -1115,7 +1117,7 @@ void OLED::scrollingAndBlinkingTimerEvent() {
 				scroller->finished = true;
 			}
 			else {
-				finished = false;
+				finished = false;	// If a scroller is somewhere in the middle, we're not finished scrolling.
 			}
 
 			// Ok, have to render.
